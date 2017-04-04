@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.devblocks.com/schema/plugin.xsd">
+	<id>wgm.spotify</id>
+	<name>Spotify Integration</name>
+	<description>This plugin provides integration with Spotify services via their API.</description>
+	<author>Webgroup Media, LLC.</author>
+	<version>0.0.2</version>
+	<link>http://www.cerbweb.com/book/latest/plugins/wgm.spotify.html</link>
+	<image>plugin.png</image>
+ 
+ 	<!-- Requirements -->
+
+	<requires>
+		<app_version min="7.4" max="7.4.99" />
+	</requires>
+ 
+	<!-- Plugin Dependencies -->
+	
+	<dependencies>
+		<require plugin_id="cerberusweb.core" version="7.4.0" />
+	</dependencies>
+	
+	<!-- Extensions -->
+ 
+	<extensions>
+
+		<!-- Setup Page Menu Item -->
+
+		<extension point="cerberusweb.ui.page.menu.item">
+			<id>wgm.spotify.setup.menu</id>
+			<name>Spotify</name>
+			<class>
+				<file>api/App.php</file>
+				<name>WgmSpotify_SetupMenuItem</name>
+			</class>
+			<params>
+				<param key="page_id" value="core.page.configuration" />
+				<param key="menu_id" value="core.setup.menu.services" />
+			</params>
+		</extension>
+		
+		<!-- Setup Page Sections -->
+		
+		<extension point="cerberusweb.ui.page.section">
+			<id>wgm.spotify.setup.page</id>
+			<name>Setup Page Spotify Section</name>
+			<class>
+				<file>api/App.php</file>
+				<name>WgmSpotify_SetupSection</name>
+			</class>
+			<params>
+				<param key="page_id" value="core.page.configuration" />
+				<param key="uri" value="spotify" />
+			</params>
+		</extension>
+		
+		<!-- Service Providers -->
+		
+		<extension point="cerb.service.provider">
+			<id>wgm.spotify.service.provider</id>
+			<name>Spotify</name>
+			<class>
+				<file>api/App.php</file>
+				<name>ServiceProvider_Spotify</name>
+			</class>
+			<params>
+				<param key="contexts">
+					<value>
+						<data key="cerberusweb.contexts.app" />
+						<data key="cerberusweb.contexts.worker" />
+					</value>
+				</param>
+			</params>
+		</extension>
+
+    </extensions> 
+</plugin>

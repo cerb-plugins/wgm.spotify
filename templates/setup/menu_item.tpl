@@ -1,0 +1,1 @@
+<a href="{devblocks_url}c=config&a=spotify{/devblocks_url}">Spotify</a>
